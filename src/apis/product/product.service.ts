@@ -56,7 +56,6 @@ export class ProductService {
   async getAllProduct():Promise<FunctionReturnObject>{
     try {
       const products=await this.db.query.product.findMany();
-      console.log("111111",products)
       if(!products){
         return { status: true, message: PRODUCT_DETAILS_NOT_FOUND, data: null,error:null};
       };
@@ -85,13 +84,11 @@ export class ProductService {
 
   async partialUpdateProduct(productId:number,updatedDetails:PartialUpdateProduct):Promise<FunctionReturnObject>{
     try {
-      console.log("111111",updatedDetails);
       const updatedUserId: { updatedId: number }[] = await this.db.update(schema.product)
       .set({ ...updatedDetails })
       .where(eq(schema.product.id,productId))
       .returning({ updatedId:schema.product.id }); 
 
-      console.log("111111",updatedUserId);
       if(updatedUserId&&updatedUserId.length>0){
         return { status: true, message: SUCCESSFULLY_UPDATED_PRODUCT, data: updatedUserId,error:null };
       };
