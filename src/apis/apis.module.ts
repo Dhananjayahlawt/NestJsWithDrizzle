@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { SignupModule } from './product/product.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
-    SignupModule,
+    ProductModule,
   ],
 })
 export class ApisModule {}

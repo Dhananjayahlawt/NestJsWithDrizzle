@@ -11,4 +11,4 @@ import { databaseProvider } from 'src/core/database/database.provider';
   controllers: [ProductController],
   providers: [ProductService,...databaseProvider],
 })
-export class SignupModule {}
+export class ProductModule {}

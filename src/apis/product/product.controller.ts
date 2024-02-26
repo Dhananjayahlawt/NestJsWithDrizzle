@@ -5,13 +5,13 @@ import { UtilsService } from 'src/utils/utils.service';
 @Controller('product')
 export class ProductController {
   constructor(
-    private readonly signupService: ProductService,
+    private readonly productService: ProductService,
     private readonly utilsService: UtilsService,
   ) {}
 
   @Post()
   async create(@Res() response,@Body() payload:CreateProduct): Promise<void> {
-    const resp = await this.signupService.createProduct(payload);
+    const resp = await this.productService.createProduct(payload);
     const statusCode = resp.status ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     this.utilsService.sendResponse(
       response,
@@ -25,7 +25,7 @@ export class ProductController {
   @Get(':id')
   async getProductById(@Res() response, @Param('id') id: string): Promise<void> {
     const productId:number=parseInt(id.trim());
-    const resp = await this.signupService.getProductById(productId);
+    const resp = await this.productService.getProductById(productId);
     const statusCode = resp.status ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     this.utilsService.sendResponse(
       response,
@@ -39,7 +39,7 @@ export class ProductController {
 
   @Get('all')
   async getAllDetails(@Res() response): Promise<void> {
-    const resp = await this.signupService.getAllProduct();
+    const resp = await this.productService.getAllProduct();
     const statusCode = resp.status ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     this.utilsService.sendResponse(
       response,
@@ -53,7 +53,7 @@ export class ProductController {
   @Delete(':id')
   async deleteProductById(@Res() response,@Param('id') id: string): Promise<void> {
     const productId:number=parseInt(id.trim())
-    const resp = await this.signupService.deleteProductById(productId);
+    const resp = await this.productService.deleteProductById(productId);
     const statusCode = resp.status ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     this.utilsService.sendResponse(
       response,
@@ -67,7 +67,7 @@ export class ProductController {
   @Patch(':id')
   async partialUpdateProduct(@Res() response,@Param('id') id: string,@Body() payload:PartialUpdateProduct): Promise<void> {
     const productId:number=parseInt(id.trim())
-    const resp = await this.signupService.partialUpdateProduct(productId,payload);
+    const resp = await this.productService.partialUpdateProduct(productId,payload);
     const statusCode = resp.status ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     this.utilsService.sendResponse(
       response,
