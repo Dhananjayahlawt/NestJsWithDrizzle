@@ -37,7 +37,7 @@ export class ProductController {
   }
 
 
-  @Get('all')
+  @Get()
   async getAllDetails(@Res() response): Promise<void> {
     const resp = await this.productService.getAllProduct();
     const statusCode = resp.status ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
