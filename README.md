@@ -1,4 +1,4 @@
-# assignment1
+
 
 This is a base nest js  project with CRUD Api implemented for Products with Drizzle ORM (pg), which anyone can use as it has been prepared, by keeping some of the most important code principles and project management recommendations. Feel free to change anything.
 
